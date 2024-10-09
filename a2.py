@@ -22,7 +22,16 @@ p1_hand = deck[0:27] # slice the deck
 p2_hand = deck[26:53] # slide the deck
 
 def card_comparison(p1_card, p2_card):
+    p1_rank = ranks.index(p1_card[1])
+    p2_rank = ranks.index(p2_card[1])
 
+    if p1_rank > p2_rank:
+       return 1
+    elif p1_rank < p2_rank:
+       return 2 
+    else:
+       return 0
+ 
     """This is the logic that compares two cards to find the stronger card
 		Return 1 if player 1's card is strong, 2 for player 2
 		if the cards are equal, return 0.
