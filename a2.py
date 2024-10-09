@@ -11,12 +11,18 @@ print(deck)
 
 # Shuffle the deck 
 random.shuffle (deck)
-
+print(deck)
 # Split the deck into two hands
-p1_hand = ... # slice the deck
-p2_hand = ... # slide the deck
+
+deck_middle = int(len(deck) /2)
+p1_hand = deck[:deck_middle]
+p2_hand = deck [deck_middle:]
+
+p1_hand = deck[0:27] # slice the deck
+p2_hand = deck[26:53] # slide the deck
 
 def card_comparison(p1_card, p2_card):
+
     """This is the logic that compares two cards to find the stronger card
 		Return 1 if player 1's card is strong, 2 for player 2
 		if the cards are equal, return 0.
