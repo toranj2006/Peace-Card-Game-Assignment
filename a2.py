@@ -6,20 +6,20 @@ ranks = ("2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A")
 suits = ("hearts", "diamonds", "clubs", "spades")
 
 # Create a deck of cards
+deck = [(rank, suit) for rank in ranks for suit in suits]
+
 deck = [(suit, rank) for suit in suits for rank in ranks]
 print(deck)
 
 # Shuffle the deck 
 random.shuffle (deck)
 print(deck)
+
 # Split the deck into two hands
 
 deck_middle = int(len(deck) /2)
 p1_hand = deck[:deck_middle]
 p2_hand = deck [deck_middle:]
-
-p1_hand = deck[0:27] # slice the deck
-p2_hand = deck[26:53] # slide the deck
 
 def card_comparison(p1_card, p2_card):
     p1_rank = ranks.index(p1_card[1])
@@ -38,6 +38,7 @@ def card_comparison(p1_card, p2_card):
 
 		Hint, using the index function will make this very simple (one liner)"""
     # Your code here
+
 
 def play_round(player1_hand, player2_hand):
     """Play a single round of the game.
