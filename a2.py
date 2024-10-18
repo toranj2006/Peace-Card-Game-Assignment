@@ -1,4 +1,5 @@
 # Import necessary modules
+import time
 import random
 
 # Define the ranks and suits
@@ -8,7 +9,7 @@ suits = ("hearts", "diamonds", "clubs", "spades")
 
 # Create a deck of cards
 
-deck = [(rank, suit) for rank in ranks for suit in suits]
+deck = [(suit, rank) for suit in suits for rank in ranks]
 
 # Shuffle the deck 
 
@@ -20,6 +21,7 @@ deck2 = deck[len(deck)//2:]
 
 def card_comparison(p1_card, p2_card):
 
+    print(f"abount to print the value of p1 {p1_card[1]}")
     if ranks.index(p1_card[1]) > ranks.index(p2_card[1]):
         return 1
     elif ranks.index(p1_card[1]) < ranks.index(p2_card[1]):
@@ -56,7 +58,6 @@ def play_round(player1_hand, player2_hand):
         
 def peace(player1_hand, player2_hand):
     #ensure both players have enough cards to proceed with a peace
-
     if len(player1_hand) < 4:
         print("Player 1 does not have enough card for peace! Player 2 wins the game!")
         player2_hand.append(player1_hand) #player 2 gets all remaining cards
@@ -70,28 +71,29 @@ def peace(player1_hand, player2_hand):
         return
 
      # take 3 card face down and 1 card face up from both players
+    while len(player1_hand) > 4  and len(player2_hand) > 4:
+        p1_war_cards = [player1_hand.pop(0) for _ in range(4)] #3 cards + 1 for comparison
+        p2_war_cards = [player2_hand.pop(0) for _ in range(4)]
 
-    p1_war_cards = [player1_hand.pop(0) for _ in range(4)] #3 cards + 1 for comparison
-    p2_war_cards = [player2_hand.pop(0) for _ in rage(4)]
+        print(f"Player 1 put down {p1_war_cards[:-1]} and reveal {p1_war_cards[-1]}")
+        print(f"Player 2 put down {p2_war_cards[:-1]} and reveal {p2_war_cards[-1]}")
 
-    print(f"Player 1 put down {p1_war_cards[:-1]} and reveal {p1_war_cards[-1]}")
-    print(f"Player 2 put down {p2_war_cards[:-1]} and reveal {P2_war_cards[-1]}")
+        #comparing the face up card
 
-    #comparing the face up card
+        result_peace = card_comparison(p1_war_cards[-1], p2_war_cards[-1])
 
-    result_peace = card_comparison(p1_war_cards[-1], p2_war_cards[-1])
-
-    if result_peace == 1:
-        print("Player 1 wins the war!")
-        player1_hand.append(p1_war_cards + p2_war_cards)
+        if result_peace == 1:
+            print("Player 1 wins the war!")
+            player1_hand.extend(p1_war_cards + p2_war_cards)
+            return
 
 
-    elif result_peace == 2:
-        print("Player 2 wins the war!")
-        player1_hand.append(p1_war_cards + p2_war_cards)
-
-    else:
-        print("Another tie! War continues!")
+        elif result_peace == 2:
+            print("Player 2 wins the war!")
+            player2_hand.extend(p1_war_cards + p2_war_cards)
+            return
+        else:
+            print("Another tie! War continues!")
     
 def game_loop(player1_hand, player2_hand):
     round_count = 0
@@ -101,8 +103,10 @@ def game_loop(player1_hand, player2_hand):
     while len(player1_hand) > 0 and len(player2_hand) > 0:
         round_count += 1
         play_round(player1_hand, player2_hand)
+        time.sleep(1)
 
 def play_game(player1_hand, player2_hand):
+    game_loop(player1_hand, player2_hand)
     #determine the winner
 
     if len(player1_hand) == 0 :
