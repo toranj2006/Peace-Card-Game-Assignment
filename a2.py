@@ -20,8 +20,6 @@ deck1 = deck[:len(deck)//2]
 deck2 = deck[len(deck)//2:]
 
 def card_comparison(p1_card, p2_card):
-
-    print(f"abount to print the value of p1 {p1_card[1]}")
     if ranks.index(p1_card[1]) > ranks.index(p2_card[1]):
         return 1
     elif ranks.index(p1_card[1]) < ranks.index(p2_card[1]):
@@ -103,7 +101,7 @@ def game_loop(player1_hand, player2_hand):
     while len(player1_hand) > 0 and len(player2_hand) > 0:
         round_count += 1
         play_round(player1_hand, player2_hand)
-        time.sleep(1)
+        time.sleep(0.2)
 
 def play_game(player1_hand, player2_hand):
     game_loop(player1_hand, player2_hand)
@@ -113,6 +111,7 @@ def play_game(player1_hand, player2_hand):
         print("Player 2 wins the game!")
     else:
         print("Player 1 wins the game!")
-# Call the main function to start the game
+
+# Calling the main function to start the game
 
 play_game(deck1, deck2)
