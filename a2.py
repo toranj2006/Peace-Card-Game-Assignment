@@ -97,7 +97,7 @@ def game_loop(player1_hand, player2_hand):
 
     while len(player1_hand) > 0 and len(player2_hand) > 0:
         play_round(player1_hand, player2_hand)
-        time.sleep(0.2)
+        time.sleep(0.8)
 
 def play_game(player1_hand, player2_hand):
     game_loop(player1_hand, player2_hand)
